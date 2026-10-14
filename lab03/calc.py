@@ -1,8 +1,6 @@
-Python 3.13.3 (v3.13.3:6280bb54784, Apr  8 2025, 10:47:54) [Clang 15.0.0 (clang-1500.3.9.4)] on darwin
-Enter "help" below or click "Help" above for more information.
 num1 = float(input("Введите первое число: "))
 num2 = float(input("Введите второе число: "))
 
 print(f"Сумма: {num1 + num2}")
-print(f"Разность: {num1 - num2}") 
-
+print(f"Разность: {num1 - num2}")
+print(f"Произведение: {num1 * num2}") # Добавили эту строку
