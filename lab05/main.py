@@ -1,13 +1,7 @@
-import os
 from logstats import count_levels, top_errors, format_report
 
 def main():
     file_name = input().strip()
-    if not os.path.exists(file_name):
-        print(0)
-        print(0)
-        print(0)
-        return
 
     with open(file_name, mode="r", encoding="utf-8") as log:
         counts = count_levels(log)
@@ -29,4 +23,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
