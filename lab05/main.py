@@ -1,30 +1,29 @@
-Python 3.13.3 (v3.13.3:6280bb54784, Apr  8 2025, 10:47:54) [Clang 15.0.0 (clang-1500.3.9.4)] on darwin
-Enter "help" below or click "Help" above for more information.
->>> import os
-... from logstats import count_levels, top_errors, format_report
-... 
-... def main():
-...     file_name = input().strip()
-...     if not os.path.exists(file_name):
-...         return
-... 
-...     with open(file_name, mode="r", encoding="utf-8") as log:
-...         counts = count_levels(log)
-...         
-...     with open(file_name, mode="r", encoding="utf-8") as log:
-...         errors = top_errors(log, 3)
-...         
-...     broken_count = counts["BROKEN"]
-...     error_count = counts["ERROR"]
-...     total_parsed = sum(counts.values())
-...     
-...     print(total_parsed)
-...     print(error_count)
-...     print(broken_count)
-...     
-...     report_text = format_report(counts, errors)
-...     with open("report.txt", mode="w", encoding="utf-8") as report_file:
-...         report_file.write(report_text)
-... 
-... if __name__ == "__main__":
-...     main()
+import os
+from logstats import count_levels, top_errors, format_report
+
+def main():
+    file_name = input().strip()
+    if not os.path.exists(file_name):
+        return
+
+    with open(file_name, mode="r", encoding="utf-8") as log:
+        counts = count_levels(log)
+        
+    with open(file_name, mode="r", encoding="utf-8") as log:
+        errors = top_errors(log, 3)
+        
+    broken_count = counts["BROKEN"]
+    error_count = counts["ERROR"]
+    total_parsed = sum(counts.values())
+    
+    print(total_parsed)
+    print(error_count)
+    print(broken_count)
+    
+    report_text = format_report(counts, errors)
+    with open("report.txt", mode="w", encoding="utf-8") as report_file:
+        report_file.write(report_text)
+
+if __name__ == "__main__":
+    main()
+
