@@ -16,16 +16,17 @@ def parse_event(line: str) -> dict:
 
 
 def count_levels(lines) -> dict:
-    counts = {"DEBUG": 0, "INFO": 0, "WARNING": 0, "ERROR": 0, "BROKEN": 0}
+    counts = {}
     for line in lines:
         cleaned = line.strip()
         if not cleaned:
             continue
         try:
             event = parse_event(cleaned)
-            counts[event["level"]] += 1
+            lvl = event["level"]
+            counts[lvl] = counts.get(lvl, 0) + 1
         except ValueError:
-            counts["BROKEN"] += 1
+            counts["BROKEN"] = counts.get("BROKEN", 0) + 1
     return counts
 
 
@@ -56,6 +57,7 @@ def format_report(counts: dict, errors: list[list]) -> str:
     for msg, count in errors:
         lines.append(f"- {msg} — {count}")
     return "\n".join(lines) + "\n"
+
 
         
 
